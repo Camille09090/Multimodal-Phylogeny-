@@ -1,0 +1,55 @@
+#NEXUS
+
+	Begin taxa;
+	Dimensions ntax=44;
+	Taxlabels
+		Achenium
+		Acylophorus
+		Astenus
+		Atrecus
+		Bisnius
+		Cafius
+		Creophilus
+		Dinothenarus
+		Emus
+		Erichsonius
+		Euryporus
+		Gabrius
+		Gabronthus
+		Gauropterus
+		Gyrohypnus
+		Heterothops
+		Lathrobium
+		Leptacinus
+		Lithocharis
+		Lobrathium
+		Medon
+		Megalinus
+		Neobisnius
+		Nudobius
+		Ochthephilum
+		Ocypus
+		Ontholestes
+		Othius
+		Paederidus
+		Paederus
+		Phacophallus
+		Philonthus
+		Platydracus
+		Pseudomedon
+		Quedius
+		Remus
+		Rugilus
+		Scopaeus
+		Staphylinus
+		Sunius
+		Tasgius
+		Tetartopeus
+		Velleius
+		Xantholinus
+		;
+End;
+
+Begin trees;
+tree TREE1 = (((((((((((((((((((Creophilus:1,Emus:1):1,(Dinothenarus:1,Ontholestes:1):1):1,((Ocypus:1,Tasgius:1):1,(Platydracus:1,Staphylinus:1):1):1):1,Velleius:1):1,Quedius:1):1,(Acylophorus:1,Euryporus:1):1):1,Philonthus:1):1,Bisnius:1):1,Cafius:1):1,Remus:1):1,Erichsonius:1):1,((Gabronthus:1,Heterothops:1):1,Gabrius:1):1):1,Neobisnius:1):1,((((((Gauropterus:1,Megalinus:1):1,Nudobius:1):1,Xantholinus:1):1,Gyrohypnus:1):1,(Leptacinus:1,Phacophallus:1):1):1,(Atrecus:1,Othius:1):1):1):1,(((((Lithocharis:1,Pseudomedon:1):1,Sunius:1):1,Medon:1):1,Scopaeus:1):1,(((Paederidus:1,Paederus:1):1,Rugilus:1):1,Astenus:1):1):1):1,Ochthephilum:1):1,Lobrathium:1):1,Tetartopeus:1):1,Achenium:1,Lathrobium:1):1;
+End;
