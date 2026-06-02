@@ -1,0 +1,45 @@
+moves = VectorMoves()
+monitors = VectorMonitors()
+
+data_file = "feature.nex"
+data <- readContinuousCharacterData(data_file)
+taxa <- data.taxa()
+
+topology ~ dnUniformTopology(taxa)
+
+
+moves.append(mvNNI(topology, weight=10.0))
+moves.append(mvSPR(topology, weight=5.0))
+
+num_branches = 2 * taxa.size() - 3
+branch_lengths = rep(0.1, num_branches)
+
+for (i in 1:num_branches) {
+    branch_lengths[i] ~ dnExponential(10.0)
+    moves.append(mvScale(branch_lengths[i], lambda=1.0, weight=1.0))
+}
+tree := treeAssembly(topology, branch_lengths)
+
+branch_rate ~ dnExponential(0.5)
+site_rate ~ dnExponential(1.0)
+
+moves.append(mvScale(branch_rate, lambda=0.3, weight=5.0))
+moves.append(mvScale(site_rate, lambda=0.1, weight=2.0))  
+
+phylo_bm ~ dnPhyloBrownianREML(tree, branch_rate, site_rate, data.nchar())
+phylo_bm.clamp(data)
+
+mymodel = model(branch_rate, site_rate, tree)
+
+monitors.append(mnScreen(printgen=100, branch_rate, site_rate))
+monitors.append(mnModel(filename="./bm_model.log", printgen=10))
+monitors.append(mnFile(filename="./bm_trees.trees", printgen=10, format="trees", tree))
+# MCMC 
+mymcmc = mcmc(mymodel, monitors, moves)
+mymcmc.burnin(generations=1000, tuningInterval=100, verbose=1, underPrior=false)
+mymcmc.run(500000)
+
+trace = readTreeTrace("./bm_trees.trees")
+mccTree(trace, "./bm_mcc.tree", 0.25)
+
+
